@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oxcore | Free Pressure Washing Quote</title>
   <meta name="description" content="Get a free pressure washing quote from a trusted local professional in Greater Manchester. Takes 30 seconds.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://images.pexels.com" crossorigin>
-  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="lead-capture.css">
 </head>
@@ -16,36 +16,25 @@
   <main class="page-wrap">
     <section class="capture-card" id="captureCard" aria-live="polite">
       <div class="brand-row">
-        <span class="brand">Oxcore</span>
+        <span class="brand">
+          <img src="favicon.png" alt="" class="brand-mark" aria-hidden="true">
+          Oxcore
+        </span>
         <a href="admin.html" class="admin-link">Admin</a>
       </div>
 
       <h1 class="headline">Need Your Driveway or Outdoor Space Pressure Washed? Check If We Cover Your Area.</h1>
       <p class="subheading">We match homeowners in Greater Manchester with trusted local professionals. Takes 30 seconds.</p>
 
-      <figure class="before-after" aria-label="Before and after driveway cleaning">
-        <div class="before-after-inner">
-          <div class="ba-half ba-before">
-            <img
-              src="https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=900&h=560&fit=crop"
-              alt="Dirty, weathered driveway before pressure washing"
-              width="450"
-              height="280"
-              loading="eager"
-              decoding="async">
-            <span class="ba-badge">Before</span>
-          </div>
-          <div class="ba-divider" aria-hidden="true"></div>
-          <div class="ba-half ba-after">
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&w=900&h=560&fit=crop&q=80"
-              alt="Clean, restored driveway after professional pressure washing"
-              width="450"
-              height="280"
-              loading="eager"
-              decoding="async">
-            <span class="ba-badge ba-badge-after">After</span>
-          </div>
+      <figure class="before-after" aria-label="Before and after driveway pressure washing">
+        <div class="ba-single">
+          <img
+            src="images/before-after.jpg"
+            alt="Driveway before and after professional pressure washing"
+            loading="eager"
+            decoding="async">
+          <span class="ba-badge">Before</span>
+          <span class="ba-badge ba-badge-after">After</span>
         </div>
       </figure>
 
@@ -99,8 +88,8 @@
     <section class="loading-screen hidden" id="loadingScreen" aria-live="assertive" aria-busy="true" hidden>
       <div class="loading-card">
         <div class="loader-ring" aria-hidden="true"></div>
-        <p class="loading-title">Checking coverage</p>
-        <p class="loading-sub">Matching your postcode with local professionals…</p>
+        <p class="loading-title" id="loadingTitle">Checking coverage</p>
+        <p class="loading-sub" id="loadingSub">Matching your postcode with local professionals…</p>
       </div>
     </section>
 

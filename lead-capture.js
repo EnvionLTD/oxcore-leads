@@ -7,8 +7,15 @@
   const submitBtn = document.getElementById("submitBtn");
   const approvedLine1 = document.getElementById("approvedLine1");
   const approvedLine2 = document.getElementById("approvedLine2");
+  const loadingTitle = document.getElementById("loadingTitle");
+  const loadingSub = document.getElementById("loadingSub");
 
-  const MIN_LOADING_MS = 1600;
+  const LOADING_STEPS = [
+    { title: "Checking coverage", sub: "Matching your postcode with local professionals…", at: 0 },
+    { title: "Almost there", sub: "Finding the best match in your area…", at: 1100 },
+    { title: "All set", sub: "Confirming your details…", at: 2000 },
+  ];
+  const MIN_LOADING_MS = 2400;
 
   function firstNameFromFull(full) {
     const t = String(full || "").trim();
@@ -26,15 +33,35 @@
     formError.classList.add("hidden");
   }
 
+  let stepTimers = [];
+  function startLoadingSteps() {
+    stepTimers.forEach((t) => clearTimeout(t));
+    stepTimers = [];
+    LOADING_STEPS.forEach((step) => {
+      const id = window.setTimeout(() => {
+        loadingTitle.textContent = step.title;
+        loadingSub.textContent = step.sub;
+      }, step.at);
+      stepTimers.push(id);
+    });
+  }
+
+  function stopLoadingSteps() {
+    stepTimers.forEach((t) => clearTimeout(t));
+    stepTimers = [];
+  }
+
   function setLoading(on) {
     if (on) {
       loadingScreen.classList.remove("hidden");
       loadingScreen.removeAttribute("hidden");
       submitBtn.disabled = true;
+      startLoadingSteps();
     } else {
       loadingScreen.classList.add("hidden");
       loadingScreen.setAttribute("hidden", "");
       submitBtn.disabled = false;
+      stopLoadingSteps();
     }
   }
 
@@ -49,6 +76,7 @@
       captureCard.classList.add("hidden");
       approvedScreen.classList.remove("hidden");
       approvedScreen.removeAttribute("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 320);
   }
 
@@ -74,6 +102,9 @@
     const started = performance.now();
     setLoading(true);
 
+    let serverOk = false;
+    let serverError = null;
+
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
@@ -81,27 +112,29 @@
         body: JSON.stringify(payload),
       });
 
-      const elapsed = performance.now() - started;
-      if (elapsed < MIN_LOADING_MS) {
-        await new Promise((r) => window.setTimeout(r, MIN_LOADING_MS - elapsed));
-      }
-
-      if (!res.ok) {
+      if (res.ok) {
+        serverOk = true;
+      } else {
         const data = await res.json().catch(() => ({}));
-        setLoading(false);
-        showError(data.error || "Something went wrong. Please try again.");
-        return;
+        serverError = data.error || `Server returned ${res.status}.`;
+        console.error("Lead submit failed:", res.status, data);
       }
+    } catch (err) {
+      serverError = "Could not reach the server. Please try again.";
+      console.error("Lead submit network error:", err);
+    }
 
-      setLoading(false);
+    const elapsed = performance.now() - started;
+    if (elapsed < MIN_LOADING_MS) {
+      await new Promise((r) => window.setTimeout(r, MIN_LOADING_MS - elapsed));
+    }
+
+    setLoading(false);
+
+    if (serverOk) {
       showApproved(fn);
-    } catch {
-      const elapsed = performance.now() - started;
-      if (elapsed < MIN_LOADING_MS) {
-        await new Promise((r) => window.setTimeout(r, MIN_LOADING_MS - elapsed));
-      }
-      setLoading(false);
-      showError("We could not reach the server. Please try again.");
+    } else {
+      showError(serverError || "Something went wrong. Please try again.");
     }
   });
 })();
