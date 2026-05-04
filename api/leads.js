@@ -42,9 +42,15 @@ module.exports = async function handler(req, res) {
     if (!atRes.ok) {
       const errText = await atRes.text();
       console.error("Airtable error", atRes.status, errText);
-      return res
-        .status(500)
-        .json({ error: "Failed to save lead. Check Airtable column names." });
+      let parsed = errText;
+      try {
+        parsed = JSON.parse(errText);
+      } catch {}
+      return res.status(500).json({
+        error: "Failed to save lead.",
+        airtableStatus: atRes.status,
+        airtableError: parsed,
+      });
     }
 
     return res.status(201).json({ ok: true });
