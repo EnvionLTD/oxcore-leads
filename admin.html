@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oxcore | Lead dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-page">
+    <header class="admin-header">
+      <div class="admin-brand">
+        <span class="brand">Oxcore</span>
+        <span class="admin-tag">Leads</span>
+      </div>
+      <a href="/" class="link-out">View landing page</a>
+    </header>
+
+    <section id="loginPanel" class="panel login-panel">
+      <h1>Sign in</h1>
+      <p class="muted">Use the credentials configured in your Vercel environment variables (<code>ADMIN_USER</code> / <code>ADMIN_PASS</code>).</p>
+      <form id="loginForm" class="login-form">
+        <label>
+          <span>Username</span>
+          <input type="text" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <p class="error hidden" id="loginError" role="alert"></p>
+        <button type="submit">Log in</button>
+      </form>
+    </section>
+
+    <section id="dashPanel" class="panel dash-panel hidden">
+      <div class="dash-toolbar">
+        <div>
+          <h1>Incoming leads</h1>
+          <p class="muted" id="leadCount">0 leads</p>
+        </div>
+        <div class="toolbar-actions">
+          <button type="button" class="btn-ghost" id="refreshBtn">Refresh</button>
+          <button type="button" class="btn-ghost" id="logoutBtn">Log out</button>
+        </div>
+      </div>
+      <p class="error hidden" id="dashError" role="alert"></p>
+      <div class="table-wrap">
+        <table class="leads-table">
+          <thead>
+            <tr>
+              <th>Received</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Postcode</th>
+              <th>Address</th>
+              <th>Service</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody"></tbody>
+        </table>
+      </div>
+      <p class="empty-hint hidden" id="emptyHint">No leads yet. Submissions from the landing page will appear here.</p>
+    </section>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

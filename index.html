@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oxcore | Free Pressure Washing Quote</title>
+  <meta name="description" content="Get a free pressure washing quote from a trusted local professional in Greater Manchester. Takes 30 seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="lead-capture.css">
+</head>
+<body>
+  <main class="page-wrap">
+    <section class="capture-card" id="captureCard" aria-live="polite">
+      <div class="brand-row">
+        <span class="brand">Oxcore</span>
+        <a href="admin.html" class="admin-link">Admin</a>
+      </div>
+
+      <h1 class="headline">Need Your Driveway or Outdoor Space Pressure Washed? Check If We Cover Your Area.</h1>
+      <p class="subheading">We match homeowners in Greater Manchester with trusted local professionals. Takes 30 seconds.</p>
+
+      <figure class="before-after" aria-label="Before and after driveway cleaning">
+        <div class="before-after-inner">
+          <div class="ba-half ba-before">
+            <img
+              src="https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=900&h=560&fit=crop"
+              alt="Dirty, weathered driveway before pressure washing"
+              width="450"
+              height="280"
+              loading="eager"
+              decoding="async">
+            <span class="ba-badge">Before</span>
+          </div>
+          <div class="ba-divider" aria-hidden="true"></div>
+          <div class="ba-half ba-after">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&w=900&h=560&fit=crop&q=80"
+              alt="Clean, restored driveway after professional pressure washing"
+              width="450"
+              height="280"
+              loading="eager"
+              decoding="async">
+            <span class="ba-badge ba-badge-after">After</span>
+          </div>
+        </div>
+      </figure>
+
+      <form id="leadForm" class="lead-form" novalidate>
+        <label class="field">
+          <span class="field-label">Full Name</span>
+          <input type="text" name="fullName" placeholder="Jane Smith" required autocomplete="name">
+        </label>
+
+        <div class="split">
+          <label class="field">
+            <span class="field-label">Postcode</span>
+            <input type="text" name="postcode" placeholder="M1 1AA" required autocomplete="postal-code">
+          </label>
+          <label class="field">
+            <span class="field-label">Phone Number</span>
+            <input type="tel" name="phone" placeholder="07700 900000" required autocomplete="tel">
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field-label">Address</span>
+          <input type="text" name="address" placeholder="House number and street" required autocomplete="street-address">
+        </label>
+
+        <label class="field field-select">
+          <span class="field-label">What needs cleaning?</span>
+          <div class="select-wrap">
+            <select name="service" required>
+              <option value="">Select a service</option>
+              <option value="Driveway">Driveway</option>
+              <option value="Patio / Decking">Patio / Decking</option>
+              <option value="Garden paths">Garden paths</option>
+              <option value="Roof / Gutters">Roof / Gutters</option>
+              <option value="Fencing">Fencing</option>
+              <option value="Block paving">Block paving</option>
+              <option value="Other / Not sure">Other / Not sure</option>
+            </select>
+          </div>
+        </label>
+
+        <p class="form-error hidden" id="formError" role="alert"></p>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span class="btn-label">Check My Area</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="loading-screen hidden" id="loadingScreen" aria-live="assertive" aria-busy="true" hidden>
+      <div class="loading-card">
+        <div class="loader-ring" aria-hidden="true"></div>
+        <p class="loading-title">Checking coverage</p>
+        <p class="loading-sub">Matching your postcode with local professionals…</p>
+      </div>
+    </section>
+
+    <section class="approved-screen hidden" id="approvedScreen" aria-live="polite" hidden>
+      <div class="approved-inner">
+        <div class="success-icon" aria-hidden="true">
+          <svg class="check-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="check-path" d="M14 24.5 L21 31.5 L34 17" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="approved-title">You're approved!</h2>
+        <p class="approved-line1" id="approvedLine1">Great news — we cover your area.</p>
+        <p class="approved-line2" id="approvedLine2">A local professional will be in touch shortly to arrange your free quote.</p>
+        <div class="approved-accent" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="lead-capture.js"></script>
+</body>
+</html>
