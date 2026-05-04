@@ -117,12 +117,9 @@
       } else {
         const data = await res.json().catch(() => ({}));
         console.error("Lead submit failed:", res.status, data);
-        const detail =
-          data.airtableError && data.airtableError.error
-            ? `${data.airtableError.error.type || ""}: ${data.airtableError.error.message || ""}`.trim()
-            : data.airtableError
-            ? JSON.stringify(data.airtableError).slice(0, 200)
-            : "";
+        const detail = data.detail
+          ? String(data.detail).slice(0, 300)
+          : "";
         serverError = detail
           ? `${data.error || "Server error"} — ${detail}`
           : data.error || `Server returned ${res.status}.`;

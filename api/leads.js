@@ -16,14 +16,6 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: "Server not configured." });
     }
 
-    const lead = {
-      Name: String(fullName).trim(),
-      Phone: String(phone).trim(),
-      Postcode: String(postcode).trim().toUpperCase(),
-      Address: String(address).trim(),
-      Service: String(service).trim(),
-    };
-
     const atRes = await fetch(
       `https://api.airtable.com/v0/${baseId}/Leads`,
       {
@@ -33,29 +25,30 @@ module.exports = async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          records: [{ fields: lead }],
-          typecast: true,
+          fields: {
+            Name: String(fullName).trim(),
+            Phone: String(phone).trim(),
+            Postcode: String(postcode).trim().toUpperCase(),
+            Address: String(address).trim(),
+            Service: String(service).trim(),
+          },
         }),
       }
     );
 
+    const responseText = await atRes.text();
+
     if (!atRes.ok) {
-      const errText = await atRes.text();
-      console.error("Airtable error", atRes.status, errText);
-      let parsed = errText;
-      try {
-        parsed = JSON.parse(errText);
-      } catch {}
+      console.error("Airtable error", atRes.status, responseText);
       return res.status(500).json({
         error: "Failed to save lead.",
-        airtableStatus: atRes.status,
-        airtableError: parsed,
+        detail: responseText,
       });
     }
 
     return res.status(201).json({ ok: true });
   } catch (err) {
     console.error("Lead handler crashed:", err);
-    return res.status(500).json({ error: "Server error." });
+    return res.status(500).json({ error: "Server error.", detail: String(err) });
   }
 };
