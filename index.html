@@ -22,7 +22,11 @@
   <!-- End Meta Pixel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Non-blocking font load — eliminates render-blocking on mobile -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <!-- Preload hero image so it arrives before first paint -->
+  <link rel="preload" href="images/before-after.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="lead-capture.css">
 </head>
 <body>
@@ -45,7 +49,10 @@
             src="images/before-after.jpg"
             alt="Driveway before and after professional pressure washing"
             loading="eager"
-            decoding="async">
+            fetchpriority="high"
+            decoding="async"
+            width="800"
+            height="450">
           <span class="ba-badge">Before</span>
           <span class="ba-badge ba-badge-after">After</span>
         </div>
@@ -121,6 +128,6 @@
     </section>
   </main>
 
-  <script src="lead-capture.js"></script>
+  <script src="lead-capture.js" defer></script>
 </body>
 </html>
