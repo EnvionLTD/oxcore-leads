@@ -137,6 +137,7 @@
     setLoading(false);
 
     if (serverOk) {
+      if (window.fbq) fbq('track', 'Lead');
       showApproved(fn);
     } else {
       showError(serverError || "Something went wrong. Please try again.");
