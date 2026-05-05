@@ -1,3 +1,5 @@
+const { put } = require("@vercel/blob");
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -9,46 +11,26 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: "Missing required fields." });
     }
 
-    const baseId = process.env.AIRTABLE_BASE_ID;
-    const apiKey = process.env.AIRTABLE_API_KEY;
-    if (!baseId || !apiKey) {
-      console.error("Airtable env vars missing");
-      return res.status(500).json({ error: "Server not configured." });
-    }
+    const now = new Date();
+    const lead = {
+      fullName: String(fullName).trim(),
+      phone: String(phone).trim(),
+      postcode: String(postcode).trim().toUpperCase(),
+      address: String(address).trim(),
+      service: String(service).trim(),
+      createdAt: now.toISOString(),
+    };
 
-    const atRes = await fetch(
-      `https://api.airtable.com/v0/${baseId}/Leads`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fields: {
-            Name: String(fullName).trim(),
-            Phone: String(phone).trim(),
-            Postcode: String(postcode).trim().toUpperCase(),
-            Address: String(address).trim(),
-            Service: String(service).trim(),
-          },
-        }),
-      }
-    );
-
-    const responseText = await atRes.text();
-
-    if (!atRes.ok) {
-      console.error("Airtable error", atRes.status, responseText);
-      return res.status(500).json({
-        error: "Failed to save lead.",
-        detail: responseText,
-      });
-    }
+    const slug = `${now.toISOString().replace(/[:.]/g, "-")}-${Math.random().toString(36).slice(2, 8)}`;
+    await put(`leads/${slug}.json`, JSON.stringify(lead), {
+      access: "public",
+      addRandomSuffix: false,
+      contentType: "application/json",
+    });
 
     return res.status(201).json({ ok: true });
   } catch (err) {
-    console.error("Lead handler crashed:", err);
-    return res.status(500).json({ error: "Server error.", detail: String(err) });
+    console.error("Lead save error:", err);
+    return res.status(500).json({ error: "Failed to save lead.", detail: String(err) });
   }
 };

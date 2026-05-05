@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const { list } = require("@vercel/blob");
 
 function verifyToken(token, secret) {
   const parts = (token || "").split(".");
@@ -22,47 +23,40 @@ module.exports = async function handler(req, res) {
 
   try {
     const JWT_SECRET = process.env.JWT_SECRET;
-    const baseId = process.env.AIRTABLE_BASE_ID;
-    const apiKey = process.env.AIRTABLE_API_KEY;
-
-    if (!JWT_SECRET || !baseId || !apiKey) {
-      return res.status(500).json({ error: "Server not configured." });
-    }
+    if (!JWT_SECRET) return res.status(500).json({ error: "Server not configured." });
 
     const token = (req.headers.authorization || "").replace("Bearer ", "").trim();
     if (!verifyToken(token, JWT_SECRET)) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const atRes = await fetch(
-      `https://api.airtable.com/v0/${baseId}/Leads?pageSize=100`,
-      {
-        headers: { Authorization: `Bearer ${apiKey}` },
-      }
+    const { blobs } = await list({ prefix: "leads/", limit: 500 });
+
+    const leads = await Promise.all(
+      blobs
+        .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt))
+        .map(async (blob) => {
+          try {
+            const r = await fetch(blob.url);
+            const data = await r.json();
+            return {
+              id: blob.pathname,
+              fullName: data.fullName || "",
+              phone: data.phone || "",
+              postcode: data.postcode || "",
+              address: data.address || "",
+              service: data.service || "",
+              createdAt: data.createdAt || blob.uploadedAt,
+            };
+          } catch {
+            return null;
+          }
+        })
     );
 
-    if (!atRes.ok) {
-      const errText = await atRes.text();
-      console.error("Airtable fetch error", atRes.status, errText);
-      return res.status(500).json({ error: "Failed to fetch leads." });
-    }
-
-    const data = await atRes.json();
-    const leads = (data.records || [])
-      .sort((a, b) => new Date(b.createdTime) - new Date(a.createdTime))
-      .map((r) => ({
-        id: r.id,
-        fullName: r.fields.Name || "",
-        phone: r.fields.Phone || "",
-        postcode: r.fields.Postcode || "",
-        address: r.fields.Address || "",
-        service: r.fields.Service || "",
-        createdAt: r.createdTime,
-      }));
-
-    return res.json({ leads });
+    return res.json({ leads: leads.filter(Boolean) });
   } catch (err) {
-    console.error("Admin leads handler crashed:", err);
-    return res.status(500).json({ error: "Server error." });
+    console.error("Admin leads error:", err);
+    return res.status(500).json({ error: "Failed to fetch leads.", detail: String(err) });
   }
 };
