@@ -44,7 +44,6 @@ module.exports = async function handler(req, res) {
               fullName: data.fullName || "",
               phone: data.phone || "",
               postcode: data.postcode || "",
-              address: data.address || "",
               service: data.service || "",
               createdAt: data.createdAt || blob.uploadedAt,
             };

@@ -80,7 +80,6 @@
         `Name: ${lead.fullName}`,
         `Phone: ${lead.phone}`,
         `Postcode: ${lead.postcode}`,
-        `Address: ${lead.address}`,
         `Service: ${lead.service}`,
       ].join("\n");
 
@@ -89,7 +88,6 @@
         <td>${escapeHtml(lead.fullName)}</td>
         <td>${escapeHtml(lead.phone)}</td>
         <td>${escapeHtml(lead.postcode)}</td>
-        <td>${escapeHtml(lead.address)}</td>
         <td>${escapeHtml(lead.service)}</td>
       `;
       tr.appendChild(rowCopyButton(block));

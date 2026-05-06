@@ -89,11 +89,10 @@
       fullName: String(fd.get("fullName") || "").trim(),
       postcode: String(fd.get("postcode") || "").trim(),
       phone: String(fd.get("phone") || "").trim(),
-      address: String(fd.get("address") || "").trim(),
       service: String(fd.get("service") || "").trim(),
     };
 
-    if (!payload.fullName || !payload.postcode || !payload.phone || !payload.address || !payload.service) {
+    if (!payload.fullName || !payload.postcode || !payload.phone || !payload.service) {
       showError("Please fill in every field so we can check your area.");
       return;
     }
