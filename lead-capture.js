@@ -11,8 +11,8 @@
   const loadingSub = document.getElementById("loadingSub");
 
   const LOADING_STEPS = [
-    { title: "Checking coverage", sub: "Matching your postcode with local professionals…", at: 0 },
-    { title: "Almost there", sub: "Finding the best match in your area…", at: 1100 },
+    { title: "Finding pros near you", sub: "Matching your postcode with local professionals…", at: 0 },
+    { title: "Almost there", sub: "Checking availability in your area…", at: 1100 },
     { title: "All set", sub: "Confirming your details…", at: 2000 },
   ];
   const MIN_LOADING_MS = 2400;
