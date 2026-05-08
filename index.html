@@ -254,7 +254,7 @@
 
       // Track first interaction with form for Meta optimisation
       leadForm.addEventListener("focusin",function(){
-        if(!interacted){interacted=true;if(window.fbq)fbq("track","InitiateCheckout")}
+        if(!interacted){interacted=true;if(window.fbq)fbq("track","ViewContent")}
       },{once:true});
 
       leadForm.addEventListener("submit",function(e){
