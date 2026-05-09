@@ -72,7 +72,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const { fullName, phone, postcode, service } = req.body || {};
-    if (!fullName || !phone || !postcode || !service) {
+    if (!fullName || !phone || !postcode) {
       return res.status(400).json({ error: "Missing required fields." });
     }
 
@@ -81,7 +81,7 @@ module.exports = async function handler(req, res) {
       fullName: String(fullName).trim(),
       phone: String(phone).trim(),
       postcode: String(postcode).trim().toUpperCase(),
-      service: String(service).trim(),
+      service: service ? String(service).trim() : "Not specified",
       createdAt: now.toISOString(),
     };
 

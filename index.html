@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Pressure Washing Quotes | Greater Manchester | Oxcore</title>
-  <meta name="description" content="Get a free, no-obligation pressure washing quote from vetted local professionals in Greater Manchester. Takes 30 seconds.">
+  <meta name="description" content="Get a free, no-obligation pressure washing quote from vetted local professionals in Greater Manchester.">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <!-- Meta Pixel -->
@@ -19,7 +19,6 @@
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=955872823931402&ev=PageView&noscript=1"/></noscript>
-  <!-- Preload hero so it arrives before first paint -->
   <link rel="preload" href="images/before-after.jpg" as="image" fetchpriority="high">
   <style>
     :root{--ink:#0f172a;--muted:#64748b;--border:#e2e8f0;--surface:#fff;--page:#f8fafc;--cta:#ff7a20;--cta-hover:#e86812;--cta-text:#fff;--accent-bar:#fde6d2;--shadow-sm:0 1px 2px rgba(15,23,42,.06);--shadow-md:0 18px 50px rgba(15,23,42,.08);--shadow-icon:0 12px 28px rgba(255,122,32,.35);--radius:12px;--radius-sm:8px;--font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
@@ -30,58 +29,75 @@
     .page-wrap{min-height:100dvh;padding:clamp(.75rem,3vw,2rem);display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden}
     @media(min-width:720px){.page-wrap{align-items:center;padding:2rem 1.5rem 3rem}}
 
-    .capture-card{width:100%;max-width:520px;animation:cardIn .5s var(--ease) both}
-    @keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .capture-card{width:100%;max-width:520px;animation:cardIn .4s var(--ease) both}
+    @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .capture-card.is-leaving{animation:cardOut .3s var(--ease) forwards}
     @keyframes cardOut{to{opacity:0;transform:translateY(-10px) scale(.98)}}
 
-    .brand-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+    .brand-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
     .brand{font-weight:800;font-size:1.125rem;letter-spacing:-.02em;color:var(--ink);display:inline-flex;align-items:center;gap:.45rem}
     .brand-mark{width:24px;height:24px;object-fit:contain;display:block}
     .admin-link{font-size:.75rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.3rem .45rem;border-radius:6px;transition:color .2s,background .2s}
     .admin-link:hover{color:var(--ink);background:rgba(15,23,42,.05)}
 
-    .headline{font-size:clamp(1.4rem,5vw,1.8rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;margin:0 0 .5rem;color:var(--ink)}
-    .subheading{margin:0 0 .25rem;font-size:.9rem;color:var(--muted);font-weight:500;max-width:44ch}
+    .headline{font-size:clamp(1.35rem,4.8vw,1.75rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;margin:0 0 .4rem;color:var(--ink)}
+    .headline em{font-style:normal;color:var(--cta)}
+    .subheading{margin:0 0 .75rem;font-size:.875rem;color:var(--muted);font-weight:500}
 
-    /* Trust row */
-    .trust-row{display:flex;flex-wrap:wrap;gap:.5rem .75rem;margin:0 0 1.25rem;padding:0;list-style:none}
-    .trust-row li{display:flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:600;color:#16a34a}
-    .trust-row li svg{width:16px;height:16px;flex-shrink:0}
+    /* Urgency bar */
+    .urgency{display:flex;align-items:center;gap:.4rem;background:#fef3c7;border:1px solid #fde68a;border-radius:var(--radius-sm);padding:.5rem .75rem;margin:0 0 1rem;font-size:.8rem;font-weight:600;color:#92400e}
+    .urgency svg{width:16px;height:16px;flex-shrink:0}
 
-    /* Before / after */
-    .before-after{margin:0 0 1.25rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+    /* Form — ABOVE image on mobile */
+    .lead-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(1rem,3.5vw,1.35rem);box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:.85rem;order:1}
+    .field{display:flex;flex-direction:column;gap:.3rem}
+    .field-label{font-size:.8rem;font-weight:600;color:var(--ink)}
+
+    .lead-form input{width:100%;font:inherit;font-size:1rem;padding:.75rem .875rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--ink);transition:border-color .2s,box-shadow .2s;min-height:48px}
+    .lead-form input::placeholder{color:#94a3b8}
+    .lead-form input:hover{border-color:#cbd5e1}
+    .lead-form input:focus{outline:none;border-color:rgba(255,122,32,.55);box-shadow:0 0 0 3px rgba(255,122,32,.18)}
+
+    .form-error{margin:0;font-size:.875rem;color:#dc2626;font-weight:500}
+    .form-error.hidden{display:none}
+
+    .btn-submit{margin-top:.1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;min-height:54px;padding:.9rem 1.25rem;border:none;border-radius:var(--radius-sm);background:var(--cta);color:var(--cta-text);font:inherit;font-size:1.1rem;font-weight:700;letter-spacing:-.01em;cursor:pointer;transition:background .2s,transform .2s var(--ease),box-shadow .2s;box-shadow:0 4px 14px rgba(255,122,32,.35)}
+    .btn-submit:hover{background:var(--cta-hover);transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,122,32,.4)}
+    .btn-submit:active{transform:translateY(0)}
+    .btn-submit:disabled{opacity:.65;cursor:not-allowed;transform:none}
+    .btn-arrow{font-size:1.2rem;line-height:1;transition:transform .25s var(--ease)}
+    .btn-submit:hover:not(:disabled) .btn-arrow{transform:translateX(4px)}
+
+    .form-note{margin:.15rem 0 0;font-size:.75rem;color:var(--muted);text-align:center;font-weight:500}
+
+    /* Trust row — below form */
+    .trust-row{display:flex;flex-wrap:wrap;gap:.4rem .7rem;margin:.5rem 0 0;padding:0;list-style:none;justify-content:center;order:2}
+    .trust-row li{display:flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;color:#16a34a}
+    .trust-row li svg{width:14px;height:14px;flex-shrink:0}
+
+    /* Before / after — BELOW form on mobile */
+    .before-after{margin:.75rem 0 0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);order:3}
     .ba-single{position:relative;display:block;width:100%;line-height:0}
     .ba-single img{width:100%;height:auto;display:block;object-fit:cover}
     .ba-badge{position:absolute;bottom:10px;left:10px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:rgba(15,23,42,.78);padding:.35rem .55rem;border-radius:6px;backdrop-filter:blur(6px);line-height:1}
     .ba-badge-after{left:auto;right:10px;background:rgba(255,122,32,.94)}
 
-    /* Form */
-    .lead-form{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(1rem,3.5vw,1.35rem);box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:.85rem}
-    .field{display:flex;flex-direction:column;gap:.35rem}
-    .field-label{font-size:.8rem;font-weight:600;color:var(--ink)}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-    @media(max-width:520px){.split{grid-template-columns:1fr}}
+    /* Social proof */
+    .social-proof{display:flex;align-items:center;gap:.5rem;margin:.75rem 0 0;order:4;justify-content:center}
+    .avatars{display:flex}
+    .avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--surface);margin-left:-8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff}
+    .avatars span:first-child{margin-left:0}
+    .av1{background:#3b82f6}.av2{background:#8b5cf6}.av3{background:#ec4899}.av4{background:#f59e0b}
+    .social-proof p{margin:0;font-size:.78rem;color:var(--muted);font-weight:500}
+    .social-proof strong{color:var(--ink);font-weight:700}
 
-    .lead-form input,.lead-form select{width:100%;font:inherit;font-size:1rem;padding:.75rem .875rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--ink);transition:border-color .2s,box-shadow .2s;min-height:48px}
-    .lead-form input::placeholder{color:#94a3b8}
-    .lead-form input:hover,.lead-form select:hover{border-color:#cbd5e1}
-    .lead-form input:focus,.lead-form select:focus{outline:none;border-color:rgba(255,122,32,.55);box-shadow:0 0 0 3px rgba(255,122,32,.18)}
-    .select-wrap{position:relative}
-    .select-wrap::after{content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-65%) rotate(45deg);pointer-events:none}
-    .lead-form select{appearance:none;padding-right:2.5rem;cursor:pointer}
+    /* Content wrapper for ordering */
+    .content-area{display:flex;flex-direction:column}
 
-    .form-error{margin:0;font-size:.875rem;color:#dc2626;font-weight:500}
-    .form-error.hidden{display:none}
-
-    .btn-submit{margin-top:.15rem;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;min-height:52px;padding:.875rem 1.25rem;border:none;border-radius:var(--radius-sm);background:var(--cta);color:var(--cta-text);font:inherit;font-size:1.05rem;font-weight:700;letter-spacing:-.01em;cursor:pointer;transition:background .2s,transform .2s var(--ease),box-shadow .2s;box-shadow:0 4px 14px rgba(255,122,32,.35)}
-    .btn-submit:hover{background:var(--cta-hover);transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,122,32,.4)}
-    .btn-submit:active{transform:translateY(0)}
-    .btn-submit:disabled{opacity:.65;cursor:not-allowed;transform:none}
-    .btn-arrow{font-size:1.125rem;line-height:1;transition:transform .25s var(--ease)}
-    .btn-submit:hover:not(:disabled) .btn-arrow{transform:translateX(4px)}
-
-    .form-note{margin:.15rem 0 0;font-size:.75rem;color:var(--muted);text-align:center;font-weight:500}
+    /* Desktop: image beside form */
+    @media(min-width:720px){
+      .before-after{order:0;margin:.75rem 0}
+    }
 
     /* Loading */
     .loading-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);z-index:100}
@@ -122,71 +138,71 @@
         <a href="admin.html" class="admin-link">Admin</a>
       </div>
 
-      <h1 class="headline">Your Outdoor Space Deserves a Fresh Start</h1>
-      <p class="subheading">Get a free, no-obligation quote from a vetted pressure washing professional near you.</p>
+      <h1 class="headline">Get Your Outdoor Space Looking <em>Brand New</em></h1>
+      <p class="subheading">Enter your postcode and we'll match you with a vetted local pressure washing pro. Completely free, no strings.</p>
 
-      <ul class="trust-row" aria-label="Why choose Oxcore">
-        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>100% Free</li>
-        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Local Pros Only</li>
-        <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>No Obligation</li>
-      </ul>
+      <div class="urgency">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+        Limited availability this week across Greater Manchester
+      </div>
 
-      <figure class="before-after" aria-label="Before and after pressure washing">
-        <div class="ba-single">
-          <img
-            src="images/before-after.jpg"
-            alt="Driveway before and after professional pressure washing"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            width="800"
-            height="450">
-          <span class="ba-badge">Before</span>
-          <span class="ba-badge ba-badge-after">After</span>
-        </div>
-      </figure>
+      <div class="content-area">
+        <form id="leadForm" class="lead-form" novalidate>
+          <label class="field">
+            <span class="field-label">Full Name</span>
+            <input type="text" name="fullName" placeholder="e.g. Sarah Johnson" required autocomplete="name">
+          </label>
 
-      <form id="leadForm" class="lead-form" novalidate>
-        <label class="field">
-          <span class="field-label">Full Name</span>
-          <input type="text" name="fullName" placeholder="e.g. Sarah Johnson" required autocomplete="name">
-        </label>
-
-        <div class="split">
           <label class="field">
             <span class="field-label">Postcode</span>
             <input type="text" name="postcode" placeholder="M1 1AA" required autocomplete="postal-code">
           </label>
+
           <label class="field">
             <span class="field-label">Phone Number</span>
             <input type="tel" name="phone" placeholder="07700 900000" required autocomplete="tel">
           </label>
-        </div>
 
-        <label class="field field-select">
-          <span class="field-label">What needs cleaning?</span>
-          <div class="select-wrap">
-            <select name="service" required>
-              <option value="">Select a service</option>
-              <option value="Driveway">Driveway</option>
-              <option value="Patio / Decking">Patio / Decking</option>
-              <option value="Garden paths">Garden paths</option>
-              <option value="Roof / Gutters">Roof / Gutters</option>
-              <option value="Fencing">Fencing</option>
-              <option value="Block paving">Block paving</option>
-              <option value="Other / Not sure">Other / Not sure</option>
-            </select>
+          <p class="form-error hidden" id="formError" role="alert"></p>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-label">Get My Free Quote</span>
+            <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+          </button>
+          <p class="form-note">No spam. A local pro will get into contact with you.</p>
+        </form>
+
+        <ul class="trust-row" aria-label="Why choose Oxcore">
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>100% Free</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Local Pros Only</li>
+          <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>No Obligation</li>
+        </ul>
+
+        <figure class="before-after" aria-label="Before and after pressure washing">
+          <div class="ba-single">
+            <img
+              src="images/before-after.jpg"
+              alt="Driveway before and after professional pressure washing"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="800"
+              height="450">
+            <span class="ba-badge">Before</span>
+            <span class="ba-badge ba-badge-after">After</span>
           </div>
-        </label>
+        </figure>
 
-        <p class="form-error hidden" id="formError" role="alert"></p>
-
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <span class="btn-label">Get My Free Quote</span>
-          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
-        </button>
-        <p class="form-note">No spam. A local pro will get into contact with you.</p>
-      </form>
+        <div class="social-proof">
+          <div class="avatars">
+            <span class="av1">S</span>
+            <span class="av2">M</span>
+            <span class="av3">K</span>
+            <span class="av4">R</span>
+          </div>
+          <p><strong>47 homeowners</strong> matched this month in Manchester</p>
+        </div>
+      </div>
     </section>
 
     <section class="loading-screen hidden" id="loadingScreen" aria-live="assertive" aria-busy="true" hidden>
@@ -260,8 +276,8 @@
       leadForm.addEventListener("submit",function(e){
         e.preventDefault();clearErr();
         var fd=new FormData(leadForm);
-        var p={fullName:(fd.get("fullName")||"").trim(),postcode:(fd.get("postcode")||"").trim(),phone:(fd.get("phone")||"").trim(),service:(fd.get("service")||"").trim()};
-        if(!p.fullName||!p.postcode||!p.phone||!p.service){showErr("Please fill in every field so we can match you.");return}
+        var p={fullName:(fd.get("fullName")||"").trim(),postcode:(fd.get("postcode")||"").trim(),phone:(fd.get("phone")||"").trim()};
+        if(!p.fullName||!p.postcode||!p.phone){showErr("Please fill in every field so we can match you.");return}
 
         var fn=firstName(p.fullName),t0=performance.now();
         setLoading(true);
